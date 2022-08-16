@@ -58,10 +58,14 @@
 	<button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#exam">Start Exam</button>
 
 	<div id="exam" class="collapse">
+
 	    <div class="card-columns-vertical">
 	        {% if user.is_authenticated %} 
 
-		    <form id="questionform" action="point to a submit view" method="post">
+		    <form id="questionform" 
+                        action="{% url 'onlinecourse:submit' course.id %}" 
+                        method="post">
+
 		        {% for question in course.question_set.all %}
 			    <div class="card mt-1">
 				<div class="card-header"><h5>{{question.text}}</h5></div>
@@ -83,6 +87,7 @@
 		    </form>
 	        {% endif %}
 	    </div>
+
 	</div>
     </div>
 
